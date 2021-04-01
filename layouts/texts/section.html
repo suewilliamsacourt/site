@@ -1,0 +1,19 @@
+{{ define "title" }}
+	Texts &ndash; {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+	{{ range .Pages }}
+		<article class="summary">
+			<a href="{{ .RelPermalink }}">
+				<header>
+					<h2>{{ .Title }}</h2>
+					<address>By {{ .Params.Author }}</address>
+				</header>
+				<main>
+					<p>{{ .Summary }} <span>Read more&hellip;</span></p>
+				</main>
+			</a>
+		</article>
+	{{ end }}
+{{ end }}

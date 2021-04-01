@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html{{ block "html" . }}{{ end }} lang="en">
+	<head>
+		{{ $css := resources.Get "app.css" | minify }}
+		{{ $js := resources.Get "app.js" | minify }}
+
+		<link rel="preload" href="/fonts/pnr.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="{{ $js.Permalink }}" as="script">
+		<link rel="preload" href="{{ $css.Permalink }}" as="style">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+		<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+		{{ template "_internal/opengraph.html" . }}
+		<link rel="stylesheet" href="{{ $css.Permalink }}">
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-wrap">
+				<a class="title" href="/">Sue Williams A’Court</a>
+				<div id="burger">
+					<div class="burger-line"></div>
+					<div class="burger-line"></div>
+				</div>
+			</div>
+			<nav class="nav">
+				{{ $currentPage := . }}
+				{{ range .Site.Menus.main }}
+					<a class="nav-item{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} active{{end}}" href="{{ .URL }}">{{ .Name }}</a>
+				{{ end }}
+			</nav>
+		</header>
+		<main class="main">
+			{{ block "main" . }}{{ end }}
+		</main>
+		<script src="{{ $js.Permalink }}"></script>
+	</body>
+</html>

@@ -1,0 +1,18 @@
+{{ define "title" }}
+	{{ .Title }} &ndash; {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+	<article class="text">
+		<header>
+			<h1>{{ .Title }}</h1>
+			{{ with .Params.Subtitle }}<h2>{{ . }}</h2>{{ end }}
+		</header>
+		<main>
+			{{ .Content }}
+		</main>
+		<footer>
+			<a class="back" href="#">Back to top</a>
+		</footer>
+	</article>
+{{ end }}

@@ -1,0 +1,37 @@
+---
+label: Gallery
+hide_body: true
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Title
+  default: Gallery
+  hidden: true
+- name: figure
+  type: field_group_list
+  fields:
+  - name: image
+    type: file
+    config:
+      maxSize: 64
+    label: Image
+  - name: caption
+    type: text
+    config:
+      required: false
+    label: Caption
+    description: Used by search engines to identify image
+  - name: show_caption
+    type: boolean
+    label: Show caption
+    description: Show caption below image
+    default: true
+  config:
+    min: 
+    max: 
+    labelField: caption
+  label: Figure
+pages:
+- content/_index.md

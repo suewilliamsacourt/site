@@ -1,0 +1,14 @@
+disableKinds = ["taxonomyTerm", "RSS"]
+title = "Sue Williams A’Court"
+summaryLength = 60
+[[menu.main]]
+name = "instagram"
+url = "https://www.instagram.com/suewilliamsacourt/"
+weight = 4
+[minify]
+minifyOutput = true
+[minify.tdewolff.html]
+keepComments = true
+[params]
+imageSizes = [ 300, 500, 750, 1000, 1500, 2500 ]
+description = "Sue Williams A’Court is a contemporary painter living and working in London. She has been shortlisted for The Threadneedle Art Prize 2014 and was nominated for the FID Drawing Prize 2017."

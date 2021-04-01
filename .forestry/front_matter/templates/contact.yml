@@ -1,0 +1,13 @@
+---
+label: Contact
+hide_body: false
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Title
+  hidden: true
+  default: Contact
+pages:
+- content/contact/_index.md

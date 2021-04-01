@@ -1,0 +1,18 @@
+---
+label: Text
+hide_body: false
+fields:
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+- type: text
+  name: subtitle
+  label: Subtitle
+- type: text
+  name: author
+  label: Author
+  config:
+    required: true
+  default: Sue Williams A’Court

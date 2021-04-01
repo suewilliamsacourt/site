@@ -1,0 +1,16 @@
+{{ define "html" }} class="gallery-page"{{ end }}
+{{ define "main" }}
+	<section id="gallery">
+		{{ range $index, $element := .Params.Figure }}
+			<figure class="gallery-item{{ if (eq $index 0) }} active{{ end }}">
+				<div class="gallery-wrap">
+					{{ $image := ($.Page.Site.GetPage "section" "images").Resources.GetMatch .image }}
+					{{ partial "image" (dict "page" $.Page "image" $image "alt" .caption "class" "gallery-image") }}
+				</div>
+				{{ if .show_caption }}
+				<figcaption class="gallery-caption">{{ .caption }}</figcaption>
+				{{ end }}
+			</figure>
+		{{ end }}
+	</section>
+{{ end }}

@@ -1,0 +1,30 @@
+{{ $src := "" }}
+{{ $srcset := "" }}
+{{ $srcs := slice }}
+
+{{range .page.Site.Params.ImageSizes }}
+	{{if le . $.image.Width}}
+		{{ $image := $.image.Resize (printf "%dx jpg" .) }}
+		{{ $srcs = $srcs | append (printf "%s %dw" $image.RelPermalink .) }}
+		{{ if not $src }}{{ $src = $image.RelPermalink }}{{ end}}
+	{{end}}
+{{end}}
+
+{{ if gt (len $srcs) 1 }}
+	{{ $srcset = delimit $srcs ", " }}
+{{ end }}
+
+{{ if eq (len $srcs) 0 }}
+	{{ $src = ($.image.Resize (printf "%dx jpg" $.image.Width)).RelPermalink }}
+{{ end }}
+
+<img
+	{{ with .class }}
+		class="{{ . }}"
+	{{ end }}
+	src="{{ $src }}"
+	srcset="{{ $srcset }}"
+	{{ with .alt}}
+		alt="{{ . }}"
+	{{ end }}
+/>
